@@ -23,7 +23,7 @@ class TanH(Module):
         pass  
 
 
-class Sigmoide(Module):
+class Sigmoid(Module):
 
     def __init__(self) -> None:
         super().__init__()
