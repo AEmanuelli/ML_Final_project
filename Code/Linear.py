@@ -1,3 +1,4 @@
+from .module import Module 
 
 class Linear(Module):
     def __init__(self, input_size: int, output_size: int, bias: bool = True):
