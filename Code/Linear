@@ -1,0 +1,31 @@
+class MSELoss(Loss):
+    def forward(self, y, yhat):
+        return np.linalg.norm(y-yhat, axis=1) ** 2
+
+    def backward(self, y, yhat):
+        return -2*(y-yhat)
+
+class Linear(Module):
+    def __init__(self, input, output):
+        self._input = input
+        self._output = output
+        self._parameters = 2*(np.random.random((self._input, self._output)) - 0.5 ) # valeur entre -1 et 1
+        self.zero_grad()
+
+    def zero_grad(self):
+        self._gradient = np.zeros((self._input, self._output))
+
+    def forward(self, X):
+        assert X.shape[1] == self._input
+        return np.dot(X, self._parameters)
+
+    def backward_update_gradient(self, input, delta):
+        assert input.shape[1] == self._input
+        assert delta.shape[1] == self._output
+        assert delta.shape[0] == input.shape[0] 
+        self._gradient += np.dot(input.T, delta)
+
+    def backward_delta(self, input, delta):
+        assert input.shape[1] == self._input
+        assert delta.shape[1] == self._output
+        return np.dot(delta, self._parameters.T )
