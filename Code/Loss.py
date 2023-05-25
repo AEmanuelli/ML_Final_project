@@ -5,7 +5,7 @@ class Loss(object):
     def backward(self, y, yhat):
         pass
     
-   class MSELoss(Loss):
+class MSELoss(Loss):
     def forward(self, y, yhat):
         return np.linalg.norm(y-yhat, axis=1) ** 2
 
