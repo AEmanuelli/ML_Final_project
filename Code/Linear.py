@@ -1,4 +1,5 @@
-from .module import Module 
+import numpy as np
+from .module import Module
 
 class Linear(Module):
     def __init__(self, input_size: int, output_size: int, bias: bool = True):
