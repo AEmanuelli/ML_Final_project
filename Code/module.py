@@ -24,9 +24,6 @@ class Module(object):
         ## Calcul la derivee de l'erreur
         pass
 
-    def __call__(self, *args: Any, **kwds: Any) -> Any:
-        return self.forward(*args, **kwds)
-
     def calculate_gain(self):
         if self.__class__.__name__.lower() == "tanh":
             return 5 / 3
