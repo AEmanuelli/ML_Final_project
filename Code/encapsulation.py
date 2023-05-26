@@ -1,28 +1,36 @@
 from .module import Module
 from .Loss import *
-
 from typing import Any
 import numpy as np
 from tqdm import tqdm
 from copy import deepcopy
+from IPython.display import display
 from sklearn.model_selection import train_test_split
 from pandas import DataFrame
 import matplotlib.pyplot as plt
+from .Linear import Linear
+from .activation import TanH, Sigmoid
 
 
 class Sequential:
-    def __init__(self, *args: Any) -> None:
-        self.modules = list(args)
+    def __init__(self, *args: Module) -> None:
+        self.modules = [*args]
         self.modules_copy = deepcopy(self.modules)
         self.inputs = []
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return self.forward(*args, **kwds)
 
-    def add(self, module: Any):
+    def add(self, module: Module):
+        """Add a module to the network."""
         self.modules.append(module)
 
+    def insert(self, idx: int, module: Module):
+        """Insert a module to the network at a specified indice."""
+        self.modules.insert(idx, module)
+
     def reset(self):
+        """Reset network to initial parameters and modules."""
         self.modules = deepcopy(self.modules_copy)
         return self
 
@@ -36,6 +44,7 @@ class Sequential:
         return input
 
     def backward(self, input, delta):
+        
         self.inputs.reverse()
 
         for i, module in enumerate(reversed(self.modules)):
@@ -51,6 +60,7 @@ class Sequential:
     def zero_grad(self):
         for module in self.modules:
             module.zero_grad()
+
 
 
 class Optim:
@@ -74,6 +84,7 @@ class Optim:
             yield X_batch, y_batch
 
     def step(self, batch_x, batch_y):
+        
         y_hat = self.network.forward(batch_x)
         loss_value = self.loss.forward(batch_y, y_hat)
 
