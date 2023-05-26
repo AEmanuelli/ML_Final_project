@@ -1,3 +1,4 @@
+import numpy as np
 class Loss(object):
     def forward(self, y, yhat):
         pass
