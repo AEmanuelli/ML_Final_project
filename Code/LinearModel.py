@@ -19,6 +19,7 @@ class LinearModel:
 
         for epoch in range(epochs):
             y_pred = self.linear_model.forward(X)
+            y_pred = np.where(y_pred >= 0.5, 1, 0)
             loss = self.mse_loss.forward(y.reshape(-1, 1), y_pred)
             accuracy = accuracy_score(y, np.round(y_pred.flatten()))
             self.loss_history.append(loss.mean())
