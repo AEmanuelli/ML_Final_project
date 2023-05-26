@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 class Sequential:
-    def __init__(self, *args: Module) -> None:
+    def __init__(self, *args: Any) -> None:
         self.modules = list(args)
         self.modules_copy = deepcopy(self.modules)
         self.inputs = []
@@ -16,7 +16,7 @@ class Sequential:
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return self.forward(*args, **kwds)
 
-    def add(self, module: Module):
+    def add(self, module: Any):
         self.modules.append(module)
 
     def reset(self):
@@ -51,7 +51,7 @@ class Sequential:
 
 
 class Optim:
-    def __init__(self, network: Sequential, loss: Loss, eps: float) -> None:
+    def __init__(self, network: Sequential, loss: Any, eps: float) -> None:
         self.network = network
         self.loss = loss
         self.eps = eps
