@@ -12,4 +12,25 @@ class MSELoss(Loss):
 
     def backward(self, y, yhat):
         return -2*(y-yhat)
+    
+    
+    
+    class CrossEntropyLoss(Loss):
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    def forward(self, y, yhat):
+        assert y.shape == yhat.shape, ValueError(
+            f"dimension mismatch, y and yhat must of same dimension. "
+            f"Here it is {y.shape} and {yhat.shape}"
+        )
+        return 1 - (yhat * y).sum(axis=1)
+
+    def backward(self, y, yhat):
+        assert y.shape == yhat.shape, ValueError(
+            f"dimension mismatch, y and yhat must of same dimension. "
+            f"Here it is {y.shape} and {yhat.shape}"
+        )
+        return yhat - y
 
