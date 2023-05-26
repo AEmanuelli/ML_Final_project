@@ -30,7 +30,7 @@ class Sequential:
         self.inputs = [input]
 
         for module in self.modules:
-            input = module(input)
+            input = module.forward(input)
             self.inputs.append(input)
 
         return input
