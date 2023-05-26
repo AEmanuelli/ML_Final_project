@@ -44,6 +44,3 @@ class Linear(Module):
 
     def zero_grad(self):
         self._gradient = np.zeros_like(self._parameters)
-
-    def update_parameters(self, learning_rate=0.001):
-        self._parameters -= learning_rate * self._gradient
