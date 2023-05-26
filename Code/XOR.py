@@ -2,7 +2,7 @@ import numpy as np
 from .module import *
 from .Linear import *
 from .activation import *
-from .MLtools import *
+from .Mltools import *
 from .Loss import *
 
 
