@@ -14,8 +14,7 @@ class MSELoss(Loss):
         return -2*(y-yhat)
     
     
-    
-    class CrossEntropyLoss(Loss):
+class CrossEntropyLoss(Loss):
 
     def __init__(self) -> None:
         super().__init__()
