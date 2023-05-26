@@ -1,6 +1,9 @@
 import numpy as np
 from .module import *
 from .Linear import *
+from .activation import *
+from .MLtools import *
+from .Loss import *
 
 
 class NN_XOR:
