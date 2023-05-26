@@ -1,5 +1,5 @@
 from .module import Module
-from .loss import *
+from .Loss import *
 
 from typing import Any
 import numpy as np
