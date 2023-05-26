@@ -1,3 +1,6 @@
+from .module import Module
+from .loss import *
+
 from typing import Any
 import numpy as np
 from tqdm import tqdm
