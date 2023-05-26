@@ -1,4 +1,7 @@
 import numpy as np
+from .module import *
+from .Linear import *
+
 
 class NN_XOR:
     def __init__(self, input_size, hidden_size, output_size):
